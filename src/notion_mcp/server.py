@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from notion_client import Client
 from fastmcp import FastMCP
 
-from .notion_client import create_calendar_page, create_list_page
+from .notion_service import create_calendar_page, create_list_page
 
 
 # Load environment variables
@@ -104,8 +104,8 @@ def add_list_item(
 
 def main():
     """Run the MCP server."""
-    # Run the server with STDIO transport (for Claude Desktop integration)
-    mcp.run(transport="stdio")
+    # Run the server with SSE transport for HTTP access
+    mcp.run(transport="sse", port=9000)
 
 
 if __name__ == "__main__":
